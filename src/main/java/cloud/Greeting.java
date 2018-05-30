@@ -1,4 +1,4 @@
-package hello;
+package cloud;
 
 public class Greeting {
 
