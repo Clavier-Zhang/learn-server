@@ -2,11 +2,27 @@ package cloud;
 
 public class Result {
 
+
+    public Result(String status) {
+        this.status = status;
+    }
+
+    public Result(String status, String description) {
+        this.status = status;
+        this.description = description;
+    }
+
+    public Result(String status, String description, Object user) {
+        this.status = status;
+        this.description = description;
+        this.user = user;
+    }
+
     String status;
 
     String description;
 
-    User user;
+    Object user;
 
     public String getStatus() {
         return status;
@@ -24,7 +40,7 @@ public class Result {
         this.description = description;
     }
 
-    public User getUser() {
+    public Object getUser() {
         return user;
     }
 
