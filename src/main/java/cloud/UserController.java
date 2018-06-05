@@ -42,13 +42,27 @@ public class UserController {
     }
 
 
-    @RequestMapping("/login")
-    public Result Login(HttpServletRequest request) {
+    @PostMapping("/login")
+    public Result login(HttpServletRequest request) {
 
-        return new Result("success", "nothing");
+        String phoneNumber = request.getParameter("phoneNumber");
+        String password = request.getParameter("password");
+
+        User user = userRepository.findByPhoneNumber(phoneNumber);
+
+        if (user == null) {
+            return new Result("fail", "phone number not exist");
+        }
+
+
+        if (!user.getPassword().equals(password)) {
+            return new Result("fail", user.getPassword());
+        }
+
+        return new Result("success", "nothing", user);
     }
 
-    @RequestMapping("/loogut")
+    @RequestMapping("/logout")
     public String Logout(@RequestParam(value="name", defaultValue="World") String name) {
         return "111111111";
     }
