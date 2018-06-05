@@ -29,8 +29,14 @@ public class UserController {
     }
 
     @RequestMapping("/login")
-    public String Login(@RequestParam(value="name", defaultValue="World") String name) {
-        return "233333333";
+    public Result Login(HttpServletRequest request) {
+
+        User user = new User();
+        user.setName(request.getParameter("name"));
+        Result result = new Result();
+        result.setStatus("success");
+        result.setUser(user);
+        return result;
     }
 
     @RequestMapping("/loogut")
