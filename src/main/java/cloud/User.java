@@ -1,14 +1,19 @@
 package cloud;
 
 import javax.persistence.*;
+import lombok.Data;
+import org.hibernate.annotations.GenericGenerator;
+
 
 @Entity
 @Table(name = "user")
+@Data
 public class User {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private Integer id;
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator( name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    private String id;
 
     private String phoneNumber;
 
@@ -18,56 +23,26 @@ public class User {
 
     private String email;
 
-    public User() {
-    }
+    private Integer followers;
 
-    public User(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    private Integer following;
+
+    private Integer posts;
+
+    public User() {
+
     }
 
     public User(String phoneNumber, String password, String username) {
         this.phoneNumber = phoneNumber;
         this.password = password;
         this.username = username;
+        this.posts = 0;
+        this.followers = 0;
+        this.following = 0;
     }
 
-    public Integer getId() {
-        return id;
-    }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 }
