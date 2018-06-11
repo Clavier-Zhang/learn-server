@@ -9,7 +9,6 @@ import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -31,6 +30,12 @@ public class UserController extends BaseController{
         return userRepository.findAll();
     }
 
+    @GetMapping("/user/deleteAll")
+    public Result deleteAll(HttpServletRequest request) {
+        userRepository.deleteAll();
+        return new Result("success");
+    }
+
     @PostMapping("/user/add")
     public Result signup(HttpServletRequest request) {
 
@@ -47,48 +52,19 @@ public class UserController extends BaseController{
         return new Result("success", "nothing", user);
     }
 
-    @PostMapping("/user/del")
-    public Result del(HttpServletRequest request) {
+    @PostMapping("/user/deleteById")
+    public Result deleteById(HttpServletRequest request) {
 
-        String phoneNumber = request.getParameter("phoneNumber");
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
+        String id = request.getParameter("id");
 
-        if (userRepository.existsByPhoneNumber(phoneNumber)) {
-            return new Result("fail", "duplicate phone number");
+        if (!userRepository.existsById(id)) {
+            return new Result("fail", "user not exist");
         }
+        userRepository.deleteById(id);
 
-        User user = new User(phoneNumber, password, username);
-        userRepository.save(user);
-        return new Result("success", "nothing", user);
+        return new Result("success");
     }
 
-
-    @PostMapping("/user/login")
-    public Result login(HttpServletRequest request) {
-
-        String phoneNumber = request.getParameter("phoneNumber");
-        String password = request.getParameter("password");
-
-        User user = userRepository.findByPhoneNumber(phoneNumber);
-
-        if (user == null) {
-            return new Result("fail", "phone number not exist");
-        }
-
-
-        if (!user.getPassword().equals(password)) {
-            return new Result("fail", user.getPassword());
-        }
-
-        return new Result("success", "nothing", user);
-    }
-
-    @GetMapping("/user/logout")
-    public String Logout(@RequestParam(value="name", defaultValue="World") String name) {
-
-        return "111111111";
-    }
 
     @PostMapping("/user/update")
     public Result update(HttpServletRequest request) {
@@ -101,4 +77,6 @@ public class UserController extends BaseController{
 
         return new Result("success", "nothing");
     }
+
+
 }

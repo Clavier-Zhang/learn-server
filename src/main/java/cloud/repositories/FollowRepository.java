@@ -11,7 +11,6 @@ public interface FollowRepository extends CrudRepository<Follow, Long> {
 
     Iterable<Follow> findAllByFollowId(String followId);
 
-
     @Transactional
     void deleteByUserIdAndFollowId(String userId, String followId);
 

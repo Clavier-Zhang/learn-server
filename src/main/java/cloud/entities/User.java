@@ -23,11 +23,11 @@ public class User {
 
     private String email;
 
-    private Integer followers;
+    private Integer follower;
 
     private Integer following;
 
-    private Integer posts;
+    private Integer post;
 
     public User() {
 
@@ -37,8 +37,8 @@ public class User {
         this.phoneNumber = phoneNumber;
         this.password = password;
         this.username = username;
-        this.posts = 0;
-        this.followers = 0;
+        this.post = 0;
+        this.follower = 0;
         this.following = 0;
     }
 
