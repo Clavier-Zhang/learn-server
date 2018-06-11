@@ -28,7 +28,7 @@ public class FollowController extends BaseController{
     @Resource
     private UserService userService;
 
-    // tools, for test
+    // api for admin
     @GetMapping("/follow/all")
     public Iterable<Follow> list(HttpServletRequest request) {
         return followRepository.findAll();
@@ -70,6 +70,7 @@ public class FollowController extends BaseController{
 
 
 
+
     // api for users
     @PostMapping("/follow/add")
     public Result add(HttpServletRequest request) {
@@ -90,15 +91,14 @@ public class FollowController extends BaseController{
             return new Result("fail", "can not follow self");
 
         }
-        userService.increasePost(userId);
-//        increasePost(userId);
+
+        userService.increaseFollowingByOne(userId);
+        userService.increaseFollowerByOne(followId);
         Follow follow = new Follow(userId, followId);
         followRepository.save(follow);
 
         return new Result("success", "nothing", follow);
     }
-
-
 
 
     @PostMapping("/follow/deleteByUserIdAndFollowId")
@@ -108,6 +108,8 @@ public class FollowController extends BaseController{
         String followId = request.getParameter("followId");
 
         followRepository.deleteByUserIdAndFollowId(userId, followId);
+        userService.decreaseFollowingByOne(userId);
+        userService.decreaseFollowerByOne(followId);
 
         return new Result("success");
 

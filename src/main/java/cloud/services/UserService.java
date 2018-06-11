@@ -16,10 +16,41 @@ public class UserService {
     private UserRepository userRepository;
 
 
-    public void increasePost(String id) {
+    public void increasePostByOne(String id) {
         User user = userRepository.findById(id);
         int post = user.getPost() + 1;
         userRepository.updatePostById(post, id);
     }
+
+    public void decreasePostByOne(String id) {
+        User user = userRepository.findById(id);
+        int post = user.getPost() - 1;
+        userRepository.updatePostById(post, id);
+    }
+
+    public void increaseFollowerByOne(String id) {
+        User user = userRepository.findById(id);
+        int post = user.getFollower() + 1;
+        userRepository.updateFollowerById(post, id);
+    }
+
+    public void decreaseFollowerByOne(String id) {
+        User user = userRepository.findById(id);
+        int post = user.getFollower() - 1;
+        userRepository.updateFollowerById(post, id);
+    }
+
+    public void increaseFollowingByOne(String id) {
+        User user = userRepository.findById(id);
+        int post = user.getFollowing() + 1;
+        userRepository.updateFollowingById(post, id);
+    }
+
+    public void decreaseFollowingByOne(String id) {
+        User user = userRepository.findById(id);
+        int post = user.getFollowing() - 1;
+        userRepository.updateFollowingById(post, id);
+    }
+
 
 }
