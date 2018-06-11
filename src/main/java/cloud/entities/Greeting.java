@@ -1,4 +1,4 @@
-package cloud;
+package cloud.entities;
 
 public class Greeting {
 

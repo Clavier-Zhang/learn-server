@@ -1,4 +1,4 @@
-package cloud;
+package cloud.entities;
 
 import javax.persistence.*;
 import lombok.Data;

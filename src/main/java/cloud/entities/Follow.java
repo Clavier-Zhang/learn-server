@@ -1,4 +1,4 @@
-package cloud;
+package cloud.entities;
 
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
@@ -11,24 +11,24 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "follower")
 @Data
-public class Follower {
+public class Follow {
 
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator( name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     private String id;
 
-    private String user;
+    private String userId;
 
-    private String following;
+    private String followId;
 
-    public Follower() {
+    public Follow() {
 
     }
 
-    public Follower(String user, String following) {
-        this.user = user;
-        this.following = following;
+    public Follow(String userId, String followId) {
+        this.userId = userId;
+        this.followId = followId;
     }
 
 }
