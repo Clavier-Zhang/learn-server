@@ -1,7 +1,7 @@
 package cloud.controllers;
 
 import cloud.entities.Result;
-import cloud.repositories.FollowerRepository;
+import cloud.repositories.FollowRepository;
 import cloud.repositories.UserRepository;
 import cloud.entities.Follow;
 import io.swagger.annotations.Api;
@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 public class FollowController extends BaseController{
 
     @Autowired
-    private FollowerRepository followRepository;
+    private FollowRepository followRepository;
 
     @Autowired
     private UserRepository userRepository;
@@ -35,34 +35,69 @@ public class FollowController extends BaseController{
 
     @PostMapping("/follow/add")
     public Result add(HttpServletRequest request) {
-        String user = request.getParameter("user");
-        String following = request.getParameter("following");
+        String userId = request.getParameter("userId");
+        String followId = request.getParameter("followId");
 
-        if (user.equals(following)) {
+        if (userId.equals(followId)) {
             return new Result("fail", "can not follow self");
         }
 
-        Follow follow = new Follow(user, following);
+        Follow follow = new Follow(userId, followId);
         followRepository.save(follow);
 
         return new Result("success", "nothing", follow);
     }
 
-    @PostMapping("/follow/del")
-    public Iterable<Follow> del(HttpServletRequest request) {
-        return followRepository.findAll();
+    @PostMapping("/follow/deleteByUserId")
+    public Result delByUserId(HttpServletRequest request) {
+
+        String userId = request.getParameter("userId");
+
+        followRepository.deleteByUserId(userId);
+
+        return new Result("success");
+
+    }
+
+    @PostMapping("/follow/delByFollowId")
+    public Result delByFollowId(HttpServletRequest request) {
+
+        String followId = request.getParameter("followId");
+
+        followRepository.deleteByFollowId(followId);
+
+        return new Result("success");
+
+    }
+
+    @PostMapping("/follow/deleteByUserIdAndFollowId")
+    public Result delByUserIdAndFollowId(HttpServletRequest request) {
+
+        String userId = request.getParameter("userId");
+        String followId = request.getParameter("followId");
+
+        followRepository.deleteByUserIdAndFollowId(userId, followId);
+
+        return new Result("success");
+
     }
 
     @PostMapping("/follow/getAllFollowers")
     public Iterable<Follow> getAllFollowers(HttpServletRequest request) {
+
         String userId = request.getParameter("userId");
+
         return followRepository.findAllByUserId(userId);
+
     }
 
-    @PostMapping("/follow/getAllFollowing")
+    @PostMapping("/follow/getAllFollowings")
     public Iterable<Follow> getAllFollowing(HttpServletRequest request) {
+
         String followId = request.getParameter("followId");
+
         return followRepository.findAllByFollowId(followId);
+
     }
 
 

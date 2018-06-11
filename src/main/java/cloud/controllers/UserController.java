@@ -3,7 +3,7 @@ package cloud.controllers;
 
 import cloud.entities.Result;
 import cloud.entities.User;
-import cloud.repositories.FollowerRepository;
+import cloud.repositories.FollowRepository;
 import cloud.repositories.UserRepository;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ public class UserController extends BaseController{
     private UserRepository userRepository;
 
     @Autowired
-    private FollowerRepository followerRepository;
+    private FollowRepository followRepository;
 
 
     @GetMapping("/user/all")
@@ -88,5 +88,17 @@ public class UserController extends BaseController{
     public String Logout(@RequestParam(value="name", defaultValue="World") String name) {
 
         return "111111111";
+    }
+
+    @PostMapping("/user/update")
+    public Result update(HttpServletRequest request) {
+
+        int posts = Integer.parseInt(request.getParameter("posts"));
+        int following = Integer.parseInt(request.getParameter("following"));
+        String userId = request.getParameter("userId");
+
+        userRepository.setUserInfoById(posts, following, userId);
+
+        return new Result("success", "nothing");
     }
 }
