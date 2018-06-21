@@ -37,7 +37,7 @@ public class ImageController extends BaseController {
 
 
 
-    @GetMapping(value = { "/img/{filename:.+}" },
+    @GetMapping(value = { "/image/{filename:.+}" },
             produces = { MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_GIF_VALUE, MediaType.IMAGE_PNG_VALUE })
     public byte[] getImg(@PathVariable String filename) {
 

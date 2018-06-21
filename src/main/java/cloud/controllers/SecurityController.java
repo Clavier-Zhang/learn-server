@@ -22,21 +22,20 @@ public class SecurityController extends BaseController{
     @PostMapping("/user/login")
     public Result login(HttpServletRequest request) {
 
-        String phoneNumber = request.getParameter("phoneNumber");
+        String email = request.getParameter("email");
         String password = request.getParameter("password");
 
-        User user = userRepository.findByPhoneNumber(phoneNumber);
+        User user = userRepository.findByEmail(email);
 
         if (user == null) {
-            return new Result("fail", "phone number not exist");
+            return new Result("fail", "email not exist");
         }
-
 
         if (!user.getPassword().equals(password)) {
-            return new Result("fail", user.getPassword());
+            return new Result("fail", "wrong password");
         }
 
-        return new Result("success", "nothing", user);
+        return new Result("success", "good", user);
     }
 
     @GetMapping("/user/logout")
