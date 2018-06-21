@@ -1,11 +1,9 @@
-package cloud.controllers;
+package cloud.services;
+
 
 import cloud.entities.Result;
-import cloud.entities.User;
-import cloud.repositories.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
@@ -13,11 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-@RequestMapping(("/api"))
-public class BaseController {
-
-    @Autowired
-    private UserRepository userRepository;
+@Transactional
+@Service
+public class ImageService {
 
     public Result saveImage(MultipartFile file) {
 
@@ -65,7 +61,4 @@ public class BaseController {
 
         return new Result("success", "save all images", targets);
     }
-
-
-
 }

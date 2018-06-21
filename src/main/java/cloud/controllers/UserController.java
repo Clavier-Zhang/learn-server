@@ -9,7 +9,9 @@ import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -40,14 +42,14 @@ public class UserController extends BaseController{
     public Result signup(HttpServletRequest request) {
 
         String phoneNumber = request.getParameter("phoneNumber");
-        String username = request.getParameter("username");
+        String name = request.getParameter("name");
         String password = request.getParameter("password");
 
         if (userRepository.existsByPhoneNumber(phoneNumber)) {
             return new Result("fail", "duplicate phone number");
         }
 
-        User user = new User(phoneNumber, password, username);
+        User user = new User(phoneNumber, password, name);
         userRepository.save(user);
         return new Result("success", "nothing", user);
     }

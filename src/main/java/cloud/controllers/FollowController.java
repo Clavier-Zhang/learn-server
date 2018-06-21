@@ -1,23 +1,17 @@
 package cloud.controllers;
 
 import cloud.entities.Result;
-import cloud.entities.User;
 import cloud.repositories.FollowRepository;
 import cloud.repositories.UserRepository;
 import cloud.entities.Follow;
 import cloud.services.UserService;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+
 
 @RestController
 @Api(value = "Follow", description = "Follow operations")

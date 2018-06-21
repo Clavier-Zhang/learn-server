@@ -1,4 +1,4 @@
-package cloud.controllers;
+package cloud.config;
 
 import javax.servlet.MultipartConfigElement;
 
