@@ -41,16 +41,21 @@ public class UserController extends BaseController{
     @PostMapping("/user/add")
     public Result signup(HttpServletRequest request) {
 
-        String phoneNumber = request.getParameter("phoneNumber");
-        String name = request.getParameter("name");
+        String email = request.getParameter("email");
         String password = request.getParameter("password");
+        String name = request.getParameter("name");
 
-        if (userRepository.existsByPhoneNumber(phoneNumber)) {
+        if (userRepository.existsByEmail(email)) {
             return new Result("fail", "duplicate phone number");
         }
 
-        User user = new User(phoneNumber, password, name);
+        User user = new User();
+        user.setEmail(email);
+        user.setPassword(password);
+        user.setName(name);
+        user.setAvatar("default_avatar.png");
         userRepository.save(user);
+
         return new Result("success", "nothing", user);
     }
 
@@ -68,16 +73,23 @@ public class UserController extends BaseController{
     }
 
 
-    @PostMapping("/user/update")
-    public Result update(HttpServletRequest request) {
+    @PostMapping("/user/updateAvatar")
+    public Result updateAvatar(HttpServletRequest request, @RequestParam("avatar") MultipartFile avatar) {
 
-        int posts = Integer.parseInt(request.getParameter("posts"));
-        int following = Integer.parseInt(request.getParameter("following"));
         String userId = request.getParameter("userId");
+        Result result = saveImage(avatar);
 
-        userRepository.setUserInfoById(posts, following, userId);
+        if (!userRepository.existsById(userId)) {
+            return new Result("fail", "user not exist");
+        }
 
-        return new Result("success", "nothing");
+        if (result.getStatus().equals("fail")) {
+            return result;
+        }
+
+        userRepository.updateAvatarById(result.getDescription(), userId);
+
+        return new Result("success", "update the avatar");
     }
 
 

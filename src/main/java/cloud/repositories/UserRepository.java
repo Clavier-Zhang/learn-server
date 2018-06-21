@@ -39,4 +39,11 @@ public interface UserRepository extends CrudRepository<User, Long> {
     @Transactional
     void updateFollowingById(Integer following, String userId);
 
+    @Modifying
+    @Query("update User u set u.avatar = ?1 where u.id = ?2")
+    @Transactional
+    void updateAvatarById(String avatar, String userId);
+
+    boolean existsByEmail(String email);
+
 }

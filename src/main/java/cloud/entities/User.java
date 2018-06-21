@@ -15,34 +15,20 @@ public class User {
     @GenericGenerator( name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     private String id;
 
-    private String phoneNumber;
+    private String email;
 
     private String password;
 
-    private String username;
+    private String name;
 
-    private String email;
+    private String phoneNumber;
+
+    private String avatar;
 
     private Integer follower;
 
     private Integer following;
 
     private Integer post;
-
-    public User() {
-
-    }
-
-    public User(String phoneNumber, String password, String username) {
-        this.phoneNumber = phoneNumber;
-        this.password = password;
-        this.username = username;
-        this.post = 0;
-        this.follower = 0;
-        this.following = 0;
-    }
-
-
-
 
 }
