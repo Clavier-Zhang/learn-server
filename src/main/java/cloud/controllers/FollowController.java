@@ -5,7 +5,6 @@ import cloud.repositories.FollowRepository;
 import cloud.repositories.UserRepository;
 import cloud.entities.Follow;
 import cloud.services.UserService;
-import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 
 
 @RestController
-@Api(value = "Follow", description = "Follow operations")
 public class FollowController extends BaseController{
 
     @Autowired
