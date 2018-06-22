@@ -1,6 +1,7 @@
 package cloud.controllers;
 
-import cloud.entities.Result;
+import cloud.common.BaseController;
+import cloud.common.Result;
 import cloud.repositories.FollowRepository;
 import cloud.repositories.UserRepository;
 import cloud.entities.Follow;
@@ -13,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 
 
 @RestController
-public class FollowController extends BaseController{
+public class FollowController extends BaseController {
 
     @Autowired
     private FollowRepository followRepository;

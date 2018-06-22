@@ -1,8 +1,9 @@
 package cloud.controllers;
 
 
+import cloud.common.BaseController;
 import cloud.entities.Post;
-import cloud.entities.Result;
+import cloud.common.Result;
 import cloud.repositories.PostRepository;
 import cloud.repositories.UserRepository;
 import cloud.services.ImageService;
@@ -22,7 +23,7 @@ import java.util.Date;
 
 
 @RestController
-public class ConfessWallController extends BaseController{
+public class ConfessWallController extends BaseController {
 
     @Autowired
     private UserRepository userRepository;
@@ -74,18 +75,14 @@ public class ConfessWallController extends BaseController{
     @PostMapping("confessPost/get")
     public Result getTenByDate(HttpServletRequest request) throws ParseException {
 
-        String date = request.getParameter("date");
+        String paramDate = request.getParameter("date");
 
-        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
-        String dateString = "2018-06-21T15:22:11.000+0000";
-        Date dateObject = sdf.parse(dateString);
+        Date date = stringToDate(paramDate);
 
-
-
+        System.out.println(date);
         System.out.println(new Date());
 
-        Iterable<Post> posts = postRepository.findTop3ByDateBeforeOrderByDateDesc(dateObject);
-
+        Iterable<Post> posts = postRepository.findTop10ByDateBeforeOrderByDateDesc(date);
 
         return new Result("success", "test", posts);
     }

@@ -1,15 +1,16 @@
-package cloud.controllers;
+package cloud.common;
 
-import cloud.entities.Result;
-import cloud.entities.User;
 import cloud.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -18,6 +19,13 @@ public class BaseController {
 
     @Autowired
     private UserRepository userRepository;
+
+    public Date stringToDate(String paramDate) throws ParseException {
+        String realDate = paramDate.substring(1, 20) + ".000+0000";
+        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
+        Date date = sdf.parse(realDate);
+        return date;
+    }
 
     public Result saveImage(MultipartFile file) {
 

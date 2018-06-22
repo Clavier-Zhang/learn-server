@@ -1,7 +1,8 @@
 package cloud.controllers;
 
 
-import cloud.entities.Result;
+import cloud.common.BaseController;
+import cloud.common.Result;
 import cloud.entities.User;
 import cloud.repositories.FollowRepository;
 import cloud.repositories.UserRepository;
@@ -17,7 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @Api(value = "User", description = "User operations")
-public class UserController extends BaseController{
+public class UserController extends BaseController {
 
 
     @Autowired

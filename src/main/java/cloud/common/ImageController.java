@@ -1,5 +1,6 @@
-package cloud.controllers;
+package cloud.common;
 
+import cloud.common.BaseController;
 import cloud.entities.Image;
 import cloud.repositories.ImageRepository;
 import cloud.services.ImageService;

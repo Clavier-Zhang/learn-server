@@ -1,6 +1,7 @@
 package cloud.controllers;
 
-import cloud.entities.Result;
+import cloud.common.BaseController;
+import cloud.common.Result;
 import cloud.entities.User;
 import cloud.repositories.UserRepository;
 import io.swagger.annotations.Api;
@@ -14,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @Api(value = "User", description = "User operations")
-public class SecurityController extends BaseController{
+public class SecurityController extends BaseController {
 
     @Autowired
     private UserRepository userRepository;
