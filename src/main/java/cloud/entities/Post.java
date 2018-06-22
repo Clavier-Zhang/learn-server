@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.sql.Timestamp;
+import java.util.Date;
 
 @Entity
 @Table(name = "post")
@@ -25,7 +26,7 @@ public class Post {
 
     private Boolean anonymous;
 
-    private Timestamp time;
+    private Date date;
 
     private Integer comments;
 

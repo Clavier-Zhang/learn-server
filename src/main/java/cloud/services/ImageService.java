@@ -1,6 +1,7 @@
 package cloud.services;
 
 
+import cloud.entities.Image;
 import cloud.entities.Result;
 import cloud.repositories.ImageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,35 @@ public class ImageService {
 
     @Autowired
     private ImageRepository imageRepository;
+
+    public Result saveImagesById(String parent, MultipartFile[] images) {
+
+        for(int i =0; i < images.length; i++) {
+            Result result = saveImageById(parent, images[i]);
+            if (result.getStatus().equals("fail")) {
+                return result;
+            }
+        }
+
+        return new Result("success");
+
+    }
+
+    public Result saveImageById(String parent, MultipartFile file) {
+
+        Result result = saveImage(file);
+        if (result.getStatus().equals("fail")) {
+            return result;
+        }
+
+        Image image = new Image();
+        image.setParent(parent);
+        image.setPath(result.getDescription());
+        imageRepository.save(image);
+
+        return new Result("success", "save image", image);
+    }
+
 
     public Result saveImage(MultipartFile file) {
 
