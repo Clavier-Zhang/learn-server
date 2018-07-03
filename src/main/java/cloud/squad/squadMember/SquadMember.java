@@ -11,7 +11,7 @@ import javax.persistence.Table;
 import java.util.Date;
 
 @Entity
-@Table(name = "Squad")
+@Table(name = "SquadMember")
 @Data
 public class SquadMember {
 
