@@ -1,4 +1,4 @@
-package cloud.common;
+package cloud.common.entity;
 
 import lombok.Data;
 
@@ -15,10 +15,10 @@ public class Result {
         this.description = description;
     }
 
-    public Result(String status, String description, Object user) {
+    public Result(String status, String description, Object obj) {
         this.status = status;
         this.description = description;
-        this.detail = user;
+        this.detail = obj;
     }
 
     String status;

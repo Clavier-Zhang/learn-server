@@ -11,9 +11,14 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class UserService {
 
-
     @Autowired
     private UserRepository userRepository;
+
+
+
+    public User findById(String id) {
+        return userRepository.findById(id);
+    }
 
 
     public void increasePostByOne(String id) {

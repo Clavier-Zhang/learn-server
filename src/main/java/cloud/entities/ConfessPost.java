@@ -3,6 +3,7 @@ package cloud.entities;
 import lombok.Data;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 
 @Data
@@ -18,12 +19,12 @@ public class ConfessPost {
 
     private Boolean anonymous;
 
-    private Timestamp time;
+    private Date date;
 
-    private Integer comments;
+    private Integer commentNum;
 
-    private Integer like;
+    private Integer likeNum;
 
-    private String article;
+    private String content;
 
 }

@@ -1,4 +1,5 @@
-package cloud.entities;
+package cloud.squad.squadMember;
+
 
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
@@ -7,31 +8,24 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.sql.Timestamp;
 import java.util.Date;
 
 @Entity
-@Table(name = "post")
+@Table(name = "Squad")
 @Data
-public class Post {
+public class SquadMember {
 
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator( name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     private String id;
 
-    private String authorId;
+    private String squadId;
 
-    private String type;
+    private String userId;
 
-    private Boolean anonymous;
+    private Integer contribution;
 
     private Date date;
-
-    private Integer commentNum;
-
-    private Integer likeNum;
-
-    private String content;
 
 }

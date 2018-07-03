@@ -1,7 +1,7 @@
 package cloud.controllers;
 
 import cloud.common.BaseController;
-import cloud.common.Result;
+import cloud.common.entity.Result;
 import cloud.repositories.FollowRepository;
 import cloud.repositories.UserRepository;
 import cloud.entities.Follow;

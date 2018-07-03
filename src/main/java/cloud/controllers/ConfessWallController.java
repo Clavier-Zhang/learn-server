@@ -3,7 +3,7 @@ package cloud.controllers;
 
 import cloud.common.BaseController;
 import cloud.entities.Post;
-import cloud.common.Result;
+import cloud.common.entity.Result;
 import cloud.repositories.PostRepository;
 import cloud.repositories.UserRepository;
 import cloud.services.ImageService;
@@ -16,9 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
@@ -47,9 +45,6 @@ public class ConfessWallController extends BaseController {
         return new Result("success", "delete all");
     }
 
-
-
-
     @PostMapping("/confessPost/add")
     public Result add(HttpServletRequest request, @RequestParam("image") MultipartFile[] images) {
 
@@ -59,9 +54,9 @@ public class ConfessWallController extends BaseController {
 
         Post post = new Post();
         post.setAuthorId(authorId);
-        post.setComments(0);
+        post.setCommentNum(0);
         post.setAnonymous(false);
-        post.setLikes(0);
+        post.setLikeNum(0);
         post.setType("confess");
         post.setContent(content);
         post.setDate(new Date());
@@ -76,13 +71,16 @@ public class ConfessWallController extends BaseController {
     public Result getTenByDate(HttpServletRequest request) throws ParseException {
 
         String paramDate = request.getParameter("date");
+        String type = request.getParameter("type");
 
         Date date = stringToDate(paramDate);
 
         System.out.println(date);
         System.out.println(new Date());
 
-        Iterable<Post> posts = postRepository.findTop10ByDateBeforeOrderByDateDesc(date);
+        Iterable<Post> posts = postRepository.findTop10ByDateBeforeAndTypeOrderByDateDesc(date, type);
+
+//        Iterable<ConfessPost> confessPosts = postsToConfessPosts(posts);
 
         return new Result("success", "test", posts);
     }

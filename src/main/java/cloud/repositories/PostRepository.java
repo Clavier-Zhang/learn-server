@@ -13,5 +13,5 @@ import java.util.Date;
 public interface PostRepository extends CrudRepository<Post, Long> {
 
 
-    Iterable<Post> findTop10ByDateBeforeOrderByDateDesc(Date date);
+    Iterable<Post> findTop10ByDateBeforeAndTypeOrderByDateDesc(Date date, String type);
 }
