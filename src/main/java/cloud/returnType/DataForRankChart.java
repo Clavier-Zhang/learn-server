@@ -1,4 +1,4 @@
-package cloud.squad.squadMember;
+package cloud.returnType;
 
 import lombok.Data;
 

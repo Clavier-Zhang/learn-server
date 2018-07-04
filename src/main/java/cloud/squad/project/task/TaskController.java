@@ -3,6 +3,7 @@ package cloud.squad.project.task;
 
 import cloud.common.BaseController;
 import cloud.common.Result;
+import cloud.returnType.DataForTaskChart;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
+import java.util.List;
 
 @RestController
 public class TaskController extends BaseController {
@@ -75,5 +77,14 @@ public class TaskController extends BaseController {
         Iterable<Task> tasks = taskService.projectIdToTasksByType(projectId, type);
 
         return new Result("success", "test", tasks);
+    }
+
+    @PostMapping("/task/dataForTaskChart")
+    public Result dataForTaskChart(HttpServletRequest request) {
+
+        String projectId = request.getParameter("projectId");
+        String type = request.getParameter("type");
+        Iterable<DataForTaskChart> data = taskService.dataForTaskChart(projectId, type);
+        return new Result("success", "get data for task chart", data);
     }
 }
