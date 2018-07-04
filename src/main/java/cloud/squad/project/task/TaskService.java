@@ -1,4 +1,4 @@
-package cloud.squad.project;
+package cloud.squad.project.task;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,9 +7,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Transactional
 @Service
-public class ProjectService {
+public class TaskService {
 
 
     @Autowired
-    private ProjectRepository projectRepository;
+    private TaskRepository taskRepository;
+
+
 }

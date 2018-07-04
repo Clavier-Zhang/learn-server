@@ -1,6 +1,5 @@
 package cloud.squad.project;
 
-
 import cloud.common.BaseController;
 import cloud.common.Result;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +19,6 @@ public class ProjectController extends BaseController {
 
     @Resource
     private ProjectService projectService;
-
 
 
     @PostMapping("/project/all")
