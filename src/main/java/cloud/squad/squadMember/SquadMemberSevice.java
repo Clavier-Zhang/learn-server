@@ -1,7 +1,7 @@
 package cloud.squad.squadMember;
 
 
-import cloud.services.UserService;
+import cloud.common.User.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

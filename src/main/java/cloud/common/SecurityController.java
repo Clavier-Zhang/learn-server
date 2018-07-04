@@ -1,9 +1,9 @@
-package cloud.controllers;
+package cloud.common;
 
 import cloud.common.BaseController;
-import cloud.common.UserRepository;
-import cloud.common.entity.Result;
-import cloud.common.User;
+import cloud.common.User.UserRepository;
+import cloud.common.Result;
+import cloud.common.User.User;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

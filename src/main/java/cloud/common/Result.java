@@ -1,4 +1,4 @@
-package cloud.common.entity;
+package cloud.common;
 
 import lombok.Data;
 

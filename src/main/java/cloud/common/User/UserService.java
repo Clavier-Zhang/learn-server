@@ -1,7 +1,7 @@
-package cloud.services;
+package cloud.common.User;
 
-import cloud.common.User;
-import cloud.common.UserRepository;
+import cloud.common.User.User;
+import cloud.common.User.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

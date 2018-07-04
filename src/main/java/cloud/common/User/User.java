@@ -1,4 +1,4 @@
-package cloud.common;
+package cloud.common.User;
 
 import javax.persistence.*;
 import lombok.Data;

@@ -2,7 +2,7 @@ package cloud.services;
 
 
 import cloud.entities.Image;
-import cloud.common.entity.Result;
+import cloud.common.Result;
 import cloud.repositories.ImageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

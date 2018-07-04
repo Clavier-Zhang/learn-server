@@ -1,9 +1,8 @@
 package cloud.squad;
 
 import cloud.common.BaseController;
-import cloud.common.entity.Result;
+import cloud.common.Result;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 

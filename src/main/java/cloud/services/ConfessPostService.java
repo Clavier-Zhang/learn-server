@@ -1,9 +1,10 @@
 package cloud.services;
 
 
+import cloud.common.User.UserService;
 import cloud.entities.ConfessPost;
 import cloud.entities.Post;
-import cloud.common.User;
+import cloud.common.User.User;
 import cloud.repositories.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

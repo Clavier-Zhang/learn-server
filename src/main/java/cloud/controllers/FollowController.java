@@ -1,11 +1,11 @@
 package cloud.controllers;
 
 import cloud.common.BaseController;
-import cloud.common.UserRepository;
-import cloud.common.entity.Result;
+import cloud.common.User.UserRepository;
+import cloud.common.Result;
 import cloud.repositories.FollowRepository;
 import cloud.entities.Follow;
-import cloud.services.UserService;
+import cloud.common.User.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

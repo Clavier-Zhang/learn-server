@@ -1,4 +1,4 @@
-package cloud.common;
+package cloud.common.Image;
 
 import cloud.common.BaseController;
 import cloud.entities.Image;
