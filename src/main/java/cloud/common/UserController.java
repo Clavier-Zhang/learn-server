@@ -1,11 +1,8 @@
-package cloud.controllers;
+package cloud.common;
 
 
-import cloud.common.BaseController;
 import cloud.common.entity.Result;
-import cloud.entities.User;
 import cloud.repositories.FollowRepository;
-import cloud.repositories.UserRepository;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,26 +25,26 @@ public class UserController extends BaseController {
     private FollowRepository followRepository;
 
 
-    @GetMapping("/user/all")
+    @PostMapping("/user/all")
     public Iterable<User> all(HttpServletRequest request) {
         return userRepository.findAll();
     }
 
-    @GetMapping("/user/deleteAll")
+    @PostMapping("/user/delAll")
     public Result deleteAll(HttpServletRequest request) {
         userRepository.deleteAll();
         return new Result("success");
     }
 
-    @PostMapping("/user/add")
-    public Result signup(HttpServletRequest request) {
+    @PostMapping("/user/create")
+    public Result create(HttpServletRequest request) {
 
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         String name = request.getParameter("name");
 
         if (userRepository.existsByEmail(email)) {
-            return new Result("fail", "duplicate phone number");
+            return new Result("fail", "duplicate email");
         }
 
         User user = new User();

@@ -1,16 +1,13 @@
 package cloud.squad.squadMember;
 
 
-import cloud.entities.User;
 import cloud.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Transactional
 @Service
@@ -48,6 +45,8 @@ public class SquadMemberSevice {
 
             result.add(dataForRankChart);
         }
+
+        Collections.sort(result);
 
 
         return result;

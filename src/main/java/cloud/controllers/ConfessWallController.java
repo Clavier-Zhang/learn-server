@@ -2,10 +2,10 @@ package cloud.controllers;
 
 
 import cloud.common.BaseController;
+import cloud.common.UserRepository;
 import cloud.entities.Post;
 import cloud.common.entity.Result;
 import cloud.repositories.PostRepository;
-import cloud.repositories.UserRepository;
 import cloud.services.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

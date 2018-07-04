@@ -1,6 +1,6 @@
-package cloud.repositories;
+package cloud.common;
 
-import cloud.entities.User;
+import cloud.common.User;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;

@@ -3,9 +3,8 @@ package cloud.services;
 
 import cloud.entities.ConfessPost;
 import cloud.entities.Post;
-import cloud.entities.User;
+import cloud.common.User;
 import cloud.repositories.PostRepository;
-import cloud.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

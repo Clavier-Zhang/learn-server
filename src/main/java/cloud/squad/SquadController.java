@@ -18,12 +18,12 @@ public class SquadController extends BaseController {
     private SquadRepository squadRepository;
 
 
-    @GetMapping("/squad/all")
+    @PostMapping("/squad/all")
     public Iterable<Squad> getAll(HttpServletRequest request) {
         return squadRepository.findAll();
     }
 
-    @GetMapping("/squad/delAll")
+    @PostMapping("/squad/delAll")
     public Result delAll(HttpServletRequest request) {
         squadRepository.deleteAll();
         return new Result("success");
@@ -38,6 +38,7 @@ public class SquadController extends BaseController {
         squad.setName(name);
         squad.setDate(new Date());
         squad.setBugNum(0);
+        squad.setMemberNum(0);
         squad.setFinishedNum(0);
         squad.setProgressingNum(0);
         squad.setPendingNum(0);

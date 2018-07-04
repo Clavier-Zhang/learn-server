@@ -4,7 +4,6 @@ package cloud.squad.squadMember;
 import cloud.common.BaseController;
 import cloud.common.entity.Result;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,9 +20,15 @@ public class SquadMemberController extends BaseController {
     @Resource
     private SquadMemberSevice squadMemberSevice;
 
-    @GetMapping("/squadMember/all")
-    public Iterable<SquadMember> getAll(HttpServletRequest request) {
+    @PostMapping("/squadMember/all")
+    public Iterable<SquadMember> all(HttpServletRequest request) {
         return squadMemberRepository.findAll();
+    }
+
+    @PostMapping("/squadMember/delAll")
+    public Result delAll(HttpServletRequest request) {
+        squadMemberRepository.deleteAll();
+        return new Result("success", "delete all");
     }
 
     @PostMapping("/squadMember/create")
@@ -31,11 +36,12 @@ public class SquadMemberController extends BaseController {
 
         String squadId = request.getParameter("squadId");
         String userId = request.getParameter("userId");
+        String contribution = request.getParameter("contribution");
 
         SquadMember squadMember = new SquadMember();
         squadMember.setSquadId(squadId);
         squadMember.setUserId(userId);
-        squadMember.setContribution(0);
+        squadMember.setContribution(Integer.parseInt(contribution));
         squadMemberRepository.save(squadMember);
 
         return new Result("success", "create squad member", squadMember);
@@ -51,7 +57,7 @@ public class SquadMemberController extends BaseController {
         return new Result("success", "find all By Squad Id", suquadMembers);
     }
 
-    @PostMapping("/squadMember/test")
+    @PostMapping("/squadMember/rankChart")
     public Result test(HttpServletRequest request) {
 
         String squadId = request.getParameter("squadId");

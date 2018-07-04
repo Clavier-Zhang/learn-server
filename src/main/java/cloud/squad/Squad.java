@@ -23,6 +23,8 @@ public class Squad {
 
     private Date date;
 
+    private Integer memberNum;
+
     private Integer pendingNum;
 
     private Integer progressingNum;
