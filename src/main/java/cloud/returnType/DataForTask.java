@@ -7,6 +7,8 @@ import java.util.Date;
 @Data
 public class DataForTask {
 
+    private String taskId;
+
     private String taskKey;
 
     private String ownerName;

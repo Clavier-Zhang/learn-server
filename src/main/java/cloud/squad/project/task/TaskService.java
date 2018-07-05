@@ -47,6 +47,7 @@ public class TaskService {
 
         for (Task task : tasks) {
             DataForTask data = new DataForTask();
+            data.setTaskId(task.getTaskId());
             data.setTaskKey(task.getTaskKey());
             data.setTitle(task.getTitle());
             data.setContent(task.getContent());
