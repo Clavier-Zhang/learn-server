@@ -1,22 +1,16 @@
 package cloud.returnType;
 
-
 import lombok.Data;
-
-import java.util.Date;
 
 @Data
 public class DataForTaskChart {
 
-    private String taskKey;
+    public Iterable<DataForTask> pending;
 
-    private String ownerName;
+    public Iterable<DataForTask> progressing;
 
-    private String title;
+    public Iterable<DataForTask> finished;
 
-    private String content;
+    public Iterable<DataForTask> bugs;
 
-    private String level;
-
-    private Date date;
 }

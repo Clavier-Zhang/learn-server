@@ -83,8 +83,19 @@ public class TaskController extends BaseController {
     public Result dataForTaskChart(HttpServletRequest request) {
 
         String projectId = request.getParameter("projectId");
-        String type = request.getParameter("type");
-        Iterable<DataForTaskChart> data = taskService.dataForTaskChart(projectId, type);
+
+        DataForTaskChart data = taskService.dataForTaskChart(projectId);
+
         return new Result("success", "get data for task chart", data);
+    }
+
+    @PostMapping("/task/updateTypeByTaskId")
+    public Result updateTypeByTaskId(HttpServletRequest request) {
+
+        String taskId = request.getParameter("taskId");
+        String type = request.getParameter("type");
+
+        Task task = taskService.updateTypeByTaskId(type, taskId);
+        return new Result("success", "get data for task chart", task);
     }
 }

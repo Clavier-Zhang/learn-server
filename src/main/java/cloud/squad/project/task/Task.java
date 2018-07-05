@@ -31,6 +31,8 @@ public class Task {
 
     private String content;
 
+    private String ownerId;
+
     private String creatorId;
 
     private Date date;
